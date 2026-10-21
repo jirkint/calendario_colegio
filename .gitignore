@@ -1,0 +1,10 @@
+node_modules
+dist
+dist-server
+uploads
+.env
+.env.*
+!.env.example
+.DS_Store
+*.local
+.impeccable

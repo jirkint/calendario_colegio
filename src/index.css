@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  --color-lavender: #E6E6FA;
+  --color-mint: #D4F1F4;
+  --color-azure: #A2D2FF;
+  --color-rose: #FFC8DD;
+  --color-bone: #F9F6F0;
+  --color-ink: #433552;
+  --color-ink-soft: #6D617F;
+  --color-ink-mute: #8A7F9C;
+
+  --font-display: "Baloo 2", "Nunito", ui-rounded, system-ui, sans-serif;
+  --font-sans: "Nunito", ui-rounded, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Nunito", ui-rounded, system-ui, sans-serif;
+    color: #433552;
+    background-color: #F9F6F0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: #A2D2FF;
+    color: #433552;
+  }
+
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid #6FA3E0;
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #C7C1E8 transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #C7C1E8;
+    border-radius: 999px;
+    border: 3px solid #F9F6F0;
+  }
+}
+
+@layer components {
+  .field {
+    width: 100%;
+    border-radius: 1rem;
+    border: 1px solid rgba(67, 53, 82, 0.14);
+    background: #ffffff;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #433552;
+    transition: border-color 0.2s ease;
+  }
+
+  .field::placeholder {
+    color: #8a7f9c;
+    font-weight: 500;
+  }
+
+  .field:focus {
+    border-color: #6fa3e0;
+    outline: none;
+  }
+}
+
+/* Scroll-reveal motion (single authored entrance) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  filter: blur(8px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Flip cards */
+.flip-card {
+  perspective: 1300px;
+}
+
+.flip-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flip-card.is-flipped .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .flip-inner {
+    transition: none;
+  }
+}

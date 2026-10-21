@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: edupaz
+    ports:
+      - "5433:5432" # evita conflicto con un PostgreSQL local que ya use el 5432
+    volumes:
+      - edupaz_pg:/var/lib/postgresql/data
+
+volumes:
+  edupaz_pg:
